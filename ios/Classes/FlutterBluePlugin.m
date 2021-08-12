@@ -82,6 +82,18 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
     } else {
       result(@(NO));
     }
+  }else if([@"init" isEqualToString:call.method]){
+      if (self->_centralManager == NULL) {
+              self->_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+          NSLog(@"Flutter_blue initiated");
+      }
+      
+      if(self->_centralManager == NULL) {
+        result(@(NO));
+      } else {
+        result(@(YES));
+      }
+      
   } else if([@"startScan" isEqualToString:call.method]) {
     // Clear any existing scan results
     [self.scannedPeripherals removeAllObjects];

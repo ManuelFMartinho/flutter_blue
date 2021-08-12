@@ -29,6 +29,8 @@ class FlutterBlue {
   LogLevel _logLevel = LogLevel.debug;
   LogLevel get logLevel => _logLevel;
 
+  Future<bool> init() => _channel.invokeMethod('init').then((value) => value);
+
   /// Checks whether the device supports Bluetooth
   Future<bool> get isAvailable =>
       _channel.invokeMethod('isAvailable').then<bool>((d) => d);
